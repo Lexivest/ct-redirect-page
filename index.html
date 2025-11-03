@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CT Merchant Affiliate Campaign</title>
+    <title>Redirecting to CT Merchant</title>
 
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="Join CT Merchant & Earn!" />
@@ -22,12 +22,59 @@
     <noscript>
       <meta http-equiv="refresh" content="5;url=https://www.ct-merchant.com.ng" />
     </noscript>
+
+    <style>
+      body {
+        font-family: 'Segoe UI', sans-serif;
+        background-color: #f9f9f9;
+        color: #333;
+        text-align: center;
+        padding-top: 80px;
+      }
+      .logo {
+        width: 120px;
+        margin-bottom: 20px;
+      }
+      .message {
+        font-size: 20px;
+        font-weight: 600;
+      }
+      .subtext {
+        font-size: 16px;
+        color: #666;
+        margin-top: 10px;
+      }
+      .progress-bar {
+        width: 60%;
+        margin: 40px auto 0;
+        background: #ddd;
+        border-radius: 20px;
+        height: 8px;
+        overflow: hidden;
+      }
+      .progress-fill {
+        height: 100%;
+        background: #4CAF50;
+        animation: load 3s linear forwards;
+      }
+      @keyframes load {
+        from { width: 0%; }
+        to { width: 100%; }
+      }
+      #debug {
+        font-size: 12px;
+        color: #aaa;
+        margin-top: 30px;
+        display: none;
+      }
+    </style>
   </head>
   <body>
-    <div style="text-align:center; font-family:sans-serif; margin-top:50px;">
-      <p>Redirecting you to CT Merchant...</p>
-      <p id="debug" style="font-size:14px; color:gray;"></p>
-    </div>
+    <img src="https://yourcdn.com/logo.png" alt="CT Merchant Logo" class="logo" />
+    <div class="message">Hang tight, we're taking you to CT Merchant...</div>
+    <div class="subtext">This won't take long. You're being redirected securely.</div>
+    <div class="progress-bar"><div class="progress-fill"></div></div>
+    <div id="debug"></div>
 
     <script>
       const userAgent = navigator.userAgent;
@@ -41,16 +88,13 @@
 
       if (!isBot) {
         setTimeout(() => {
-          if (ref) {
-            const redirectUrl = `https://lijugysubwykcydgnntv.functions.supabase.co/redirect?ref=${ref}${campaign ? `&campaign=${campaign}` : ""}`;
-            console.log("🔗 Redirecting to:", redirectUrl);
-            window.location.href = redirectUrl;
-          } else {
-            console.warn("⚠️ No referral code found. Redirecting to homepage.");
-            window.location.href = "https://www.ct-merchant.com.ng";
-          }
+          const redirectUrl = ref
+            ? `https://lijugysubwykcydgnntv.functions.supabase.co/redirect?ref=${ref}${campaign ? `&campaign=${campaign}` : ""}`
+            : "https://www.ct-merchant.com.ng";
+          window.location.href = redirectUrl;
         }, 3000);
       } else {
+        debug.style.display = "block";
         console.log("🤖 Bot detected — no redirect triggered.");
       }
     </script>
